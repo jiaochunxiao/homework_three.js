@@ -1,0 +1,30 @@
+{
+  "name": "homework_three",
+  "version": "1.0.0",
+  "description": "three.js",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiaochunxiao/homework_three.js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiaochunxiao/homework_three.js/issues"
+  },
+  "homepage": "https://github.com/jiaochunxiao/homework_three.js#readme",
+  "devDependencies": {
+    "cz-conventional-changelog": "2.1.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
