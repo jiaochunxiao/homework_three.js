@@ -69,4 +69,4 @@ scene.add(cube);
 
 #### cubeTextureLoader
 
-> CubeTextureLoader is for CubeMap which is used for SkyBox or EnvMap.
+> CubeTextureLoader is for CubeMap which is used for SkyBox or EnvMap, is not really for adding textures on a 'cube' mesh.
