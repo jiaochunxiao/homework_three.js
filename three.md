@@ -25,4 +25,48 @@ document.body.appendChild( renderer.domElement );
 > near-摄像机水椎体近端面
 > far-摄像机视椎体远端面
 
-![透视相机](./img/perspectivecamera.jpg)
+![透视相机](./public/img/perspectivecamera.jpg)
+
+### loader
+
+#### TextureLoader
+
+内部使用 ImageLoader 来加载文件。
+
+```javascript
+var texture = new THREE.TextureLoader().load('./img/zhengfeng.jpg');
+var material = new THREE.MeshBasicMaterial({
+    map: texture,
+});
+
+
+ var loader = new THREE.TextureLoader();
+var geometry2 = new THREE.BoxGeometry(300, 200, 200);
+var materialArray = [
+    new THREE.MeshBasicMaterial({
+        map: loader.load('./img/3.webp'), 
+    }),
+    new THREE.MeshBasicMaterial({
+        map: loader.load('./img/4.webp'), 
+    }),
+    new THREE.MeshBasicMaterial({
+        map: loader.load('./img/5.webp'), 
+    }),
+    new THREE.MeshBasicMaterial({
+        map: loader.load('./img/6.webp'), 
+    }),
+    new THREE.MeshBasicMaterial({
+        map: loader.load('./img/7.webp'), 
+    }),
+    new THREE.MeshBasicMaterial({
+        map: loader.load('./img/8.webp'), 
+    }),
+]
+var cube = new THREE.Mesh(geometry2, materialArray);
+scene.add(cube);
+
+```
+
+#### cubeTextureLoader
+
+> CubeTextureLoader is for CubeMap which is used for SkyBox or EnvMap.

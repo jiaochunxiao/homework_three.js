@@ -51,9 +51,31 @@
     var line = new THREE.Line( geometry1, material1 );
     scene.add(line);
 
-    var geometry2 = new THREE.BoxGeometry(100, 100, 100);
-    var material2 = new THREE.MeshBasicMaterial({color: 0xffff00});
-    var cube = new THREE.Mesh(geometry2, material2);
+    var loader = new THREE.TextureLoader();
+    var geometry2 = new THREE.BoxGeometry(300, 200, 200);
+    var materialArray = [
+        new THREE.MeshBasicMaterial({
+            map: loader.load('./img/3.webp'), 
+        }),
+        new THREE.MeshBasicMaterial({
+            map: loader.load('./img/4.webp'), 
+        }),
+        new THREE.MeshBasicMaterial({
+            map: loader.load('./img/5.webp'), 
+        }),
+        new THREE.MeshBasicMaterial({
+            map: loader.load('./img/6.webp'), 
+        }),
+        new THREE.MeshBasicMaterial({
+            map: loader.load('./img/7.webp'), 
+        }),
+        new THREE.MeshBasicMaterial({
+            map: loader.load('./img/8.webp'), 
+        }),
+    ]
+    var cube = new THREE.Mesh(geometry2, materialArray);
+    scene.add(cube);
+
 
     var geometry = new THREE.Geometry();
     geometry.vertices.push( new THREE.Vector3( 0, 500, 0 ) );
@@ -69,10 +91,6 @@
         line.rotation.z = 90 * Math.PI / 180;
         scene.add( line );
     }
-
-
-    
-    scene.add(cube);
     var animate = function() {
         requestAnimationFrame(animate);
         cube.rotation.x += 0.01;
