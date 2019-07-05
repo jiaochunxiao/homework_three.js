@@ -27,6 +27,15 @@ document.body.appendChild( renderer.domElement );
 
 ![透视相机](./public/img/perspectivecamera.jpg)
 
+position, up, lookat
+
+相机默认有正z轴，看向-z轴，就像我们从屏幕外看向屏幕内。
+
+> camera.postion：相机所在的位置，默认为（0，0，0）
+> camera.up：坐标轴向上方向，默认（0，1，0）。要设置在camera.lookAt前才有效
+> camera.lookAt：相机焦点方向，默认为Z轴负半轴方向
+
+
 ### loader
 
 #### TextureLoader

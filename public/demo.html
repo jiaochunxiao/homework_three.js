@@ -28,17 +28,24 @@
     // 创建相机
     // THREE.PerspectiveCamera(fov: Number, aspect: Number, near: Nunber, far: Number)
     var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 1, 1000 );
-    camera.position.set(0, 0, 500 );
+
+    // 相机以哪个方向为上方
+    // camera.up.x = 0;
+    // camera.up.y = 1;
+    // camera.up.z = 0;
+
+    // 设置相机的位置
+    camera.position.set(0, 0, 500);
     
     // 设置相机镜头看向三维空间中指定的位置。
-    camera.lookAt( 0, 0, 0 );
+    camera.lookAt(0, 0, 0);
 
     // 创建场景
     var scene = new THREE.Scene();
-
+    scene.background = new THREE.Color(0x000000);
     // 基础线条材质
     var material1 = new THREE.LineBasicMaterial({
-        color: 0x0000ff
+        color: 0x0000ff,
     });
 
     var geometry1 = new THREE.Geometry();
@@ -52,7 +59,9 @@
     scene.add(line);
 
     var loader = new THREE.TextureLoader();
+    // 几何体
     var geometry2 = new THREE.BoxGeometry(300, 200, 200);
+    // 材质
     var materialArray = [
         new THREE.MeshBasicMaterial({
             map: loader.load('./img/3.webp'), 
@@ -72,9 +81,39 @@
         new THREE.MeshBasicMaterial({
             map: loader.load('./img/8.webp'), 
         }),
-    ]
+    ];
+    // 物体
     var cube = new THREE.Mesh(geometry2, materialArray);
     scene.add(cube);
+
+
+    var geometry3 = new THREE.BoxGeometry(100, 100, 100);
+    var material3 = new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+    });
+    var cube1 = new THREE.Mesh(geometry3, material3);
+    cube1.position.set(200, 100, 10);
+    cube1.castShadow = true;
+    scene.add(cube1);
+    
+    // 创建球体
+    var sphereGeometry = new THREE.SphereGeometry(50, 50, 50);
+    var sphereMaterial = new THREE.MeshLambertMaterial({
+        color: 0x7777ff
+    });
+    var sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphere.position.set(-200, 150, 0);
+    scene.add(sphere);
+
+    var sphere1 = new THREE.Mesh(sphereGeometry, sphereMaterial);
+    sphere1.position.set(200, -150, 0);
+    scene.add(sphere1);
+
+    scene.add(new THREE.AmbientLight(0xff0000));
+    // 聚光灯光源
+    var spotLight = new THREE.SpotLight( 0xffffff );
+    spotLight.position.set(500, 0, 500 );
+    scene.add(spotLight);
 
 
     var geometry = new THREE.Geometry();
@@ -98,8 +137,6 @@
         renderer.render(scene, camera);
     }
     animate();
-    
-
     </script>
 </body>
 </html>
