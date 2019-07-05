@@ -49,7 +49,7 @@ var material = new THREE.MeshBasicMaterial({
 });
 
 
- var loader = new THREE.TextureLoader();
+var loader = new THREE.TextureLoader();
 var geometry2 = new THREE.BoxGeometry(300, 200, 200);
 var materialArray = [
     new THREE.MeshBasicMaterial({
@@ -79,3 +79,15 @@ scene.add(cube);
 #### cubeTextureLoader
 
 > CubeTextureLoader is for CubeMap which is used for SkyBox or EnvMap, is not really for adding textures on a 'cube' mesh.
+
+
+### light
+
+#### AmbientLight
+
+环境光，均匀照亮场景中所有物体，不能用来投射阴影，因为没有方向
+
+```
+var light = new THREE.AmbientLight(0xff0000);
+scene.add(light);
+```

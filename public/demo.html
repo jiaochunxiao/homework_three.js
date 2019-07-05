@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/106/three.min.js" integrity="sha256-tAVw6WRAXc3td2Esrjd28l54s3P2y7CDFu1271mu5LE=" crossorigin="anonymous"></script> -->
     <script src='./lib/three.min.js'></script>
+    <script src='./lib/orbitcontrols.js'></script>
     <title>three.js</title>
     <style type='text/css'>
     html, body {
@@ -43,6 +44,10 @@
     // 创建场景
     var scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000000);
+
+    // 添加控制 
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.update();
     // 基础线条材质
     var material1 = new THREE.LineBasicMaterial({
         color: 0x0000ff,
@@ -108,12 +113,27 @@
     var sphere1 = new THREE.Mesh(sphereGeometry, sphereMaterial);
     sphere1.position.set(200, -150, 0);
     scene.add(sphere1);
+    
+    // 环境光
+    // scene.add(new THREE.AmbientLight(0xffffff));
 
-    scene.add(new THREE.AmbientLight(0xff0000));
+    // 平行光
+    var light = new THREE.DirectionalLight(0xff0000, 1);
+    light.position.set(0, 0, 500);
+    scene.add(light)
+
     // 聚光灯光源
-    var spotLight = new THREE.SpotLight( 0xffffff );
+    var spotLight = new THREE.SpotLight( 0xff0000 );
     spotLight.position.set(500, 0, 500 );
     scene.add(spotLight);
+
+    var geometry4 = new THREE.CubeGeometry(200, 200, 200, 4, 4);
+    var material4 = new THREE.MeshLambertMaterial({
+        color: 0x880000,
+    });
+    var mesh = new THREE.Mesh(geometry4, material4);
+    mesh.position.set(-300, -100, 0);
+    scene.add(mesh);
 
 
     var geometry = new THREE.Geometry();
@@ -133,7 +153,8 @@
     var animate = function() {
         requestAnimationFrame(animate);
         cube.rotation.x += 0.01;
-		cube.rotation.y += 0.01;
+        cube.rotation.y += 0.01;
+        controls.update();
         renderer.render(scene, camera);
     }
     animate();
